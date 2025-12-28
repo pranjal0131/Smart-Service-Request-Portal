@@ -2,21 +2,6 @@
 
 > A modern, full-stack service request management application built with React, Node.js/Express, and SQLite.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#quick-start)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [API Endpoints](#api-endpoints)
-- [Usage](#usage)
-- [Architecture](#architecture)
-- [Deployment](#deployment)
-- [Troubleshooting](#troubleshooting)
-
 ## Overview
 
 Smart Service Request Portal is a production-ready application for managing service requests in universities and enterprises. It provides a complete workflow for creating, tracking, and resolving requests with features like automatic SLA tracking, real-time analytics, team collaboration through comments, and a comprehensive audit trail.
@@ -120,67 +105,6 @@ Smart Service Request Portal is a production-ready application for managing serv
 ## Quick Start
 
 **Prerequisites:** Node.js v14+ and npm
-
-**Setup (5 minutes):**
-
-```bash
-# Terminal 1: Start Backend
-cd backend
-npm install
-npm start
-# Backend runs on http://localhost:5000
-
-# Terminal 2: Start Frontend
-cd frontend
-npm install
-npm start
-# Frontend runs on http://localhost:3000
-```
-
-**Login with demo credentials:**
-- Email: `admin@university.edu`
-- Password: `admin123`
-
-Or create a new user via the registration form.
-
-## Installation
-
-### Backend Setup
-
-```bash
-cd backend
-npm install
-npm start
-```
-
-**Expected Output:**
-```
-Smart Service Portal API running on port 5000
-```
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-**Expected Output:**
-```
-Local: http://localhost:3000
-```
-
-### Sample Data
-
-The backend automatically loads 3 sample requests on startup:
-1. WiFi connectivity issue
-2. Room booking request
-3. Facilities maintenance request
-
-Pre-configured demo accounts:
-- Admin: `admin@university.edu` / `admin123`
-- User: `user@university.edu` / `user123`
 
 ## Project Structure
 
@@ -531,17 +455,6 @@ git push heroku main
 ✅ Role-based access control (Admin vs User)  
 ✅ Environment variable protection (secrets not in code)  
 
-### Security Best Practices for Production
-
-- [ ] Use HTTPS/TLS on all connections
-- [ ] Implement rate limiting on API endpoints
-- [ ] Add request validation and sanitization
-- [ ] Enable database encryption at rest
-- [ ] Use strong JWT_SECRET (minimum 32 characters)
-- [ ] Implement API key rotation
-- [ ] Add request logging and monitoring
-- [ ] Regular security audits
-- [ ] Keep dependencies updated
 
 ## Development Tips
 
@@ -596,10 +509,6 @@ const authenticateToken = (req, res, next) => {
 };
 ```
 
-## License
-
-This project is open source and available under the MIT License.
-
 ## Support
 
 For questions or issues:
@@ -646,26 +555,7 @@ A single-file consolidated README that contains all essential information to run
 
 Smart Service Request Portal is a production-ready, full-stack application for managing service requests (IT, Facilities, Admin) with features including automatic SLA tracking, request comments, full history, role-based access, and a real-time analytics dashboard.
 
-## Quick Start (5 minutes)
 
-Prerequisites:
-- Node.js v14+ and npm
-
-Run backend and frontend in two terminals:
-
-```bash
-cd backend
-npm install
-npm start
-
-cd frontend
-npm install
-npm start
-```
-
-Open http://localhost:3000 and login with:
-- Email: admin@university.edu
-- Password: admin123
 
 ## Key Files
 
@@ -693,14 +583,6 @@ Create `frontend/.env` if needed:
 ```
 REACT_APP_API_URL=http://localhost:5000
 ```
-
-## Run & Test
-
-- Backend listens on port 5000 by default.
-- Frontend runs on port 3000 by default.
-- API quick checks:
-  - `GET /api/health` — simple health check
-  - `POST /api/auth/login` — returns a JWT
 
 ## API Endpoints (quick reference)
 
@@ -731,34 +613,9 @@ On first run, demo users and sample requests are available:
 - Role-based access controls enforced in backend
 - Keep `JWT_SECRET` secure and do not commit `.env`
 
-## Preparing for Submission
-
-Before publishing or submitting:
-1. Add a `.gitignore` (exclude `node_modules/`, `data.sqlite`, `.env`, `frontend/build/`).
-2. Replace real secrets with placeholders and add `backend/.env.example` and `frontend/.env.example`.
-3. Remove any personal files or logs.
-4. Optionally create a zip excluding `node_modules` and `.env`.
-
-## Deployment Notes
-
-For production you can:
-- Switch to a server DB (MongoDB/PostgreSQL)
-- Run behind a reverse proxy (nginx)
-- Containerize with Docker (build frontend, serve static files)
-
-## Files Removed
-
-All project documentation has been consolidated into this file; the following markdown files were removed from the repo to keep a single source of truth:
-- QUICKSTART.md, SETUP_GUIDE.md, FEATURES.md, INNOVATION.md, ARCHITECTURE.md, API_TESTING.md, PROJECT_MAP.md, DELIVERY_SUMMARY.md, FINAL_CHECKLIST.md, INDEX.md, START_HERE.md, ALL_DOCS_SUMMARY.md, and `docs/README.md`.
-
-If you want the files restored or split into separate docs again, I can recreate them.
 
 ## Contact
 
-For support or questions, open an issue in the repository or contact the owner.
+For support or questions, open an issue in the repository or contact at 9839pranjal@gmail.com.
 
-## License
 
-This project is provided as-is for educational and enterprise use. Add a license file before public release if needed.
-
-Last updated: December 2025
