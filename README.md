@@ -140,90 +140,6 @@ Smart Service Request Portal/
 └── package.json              # Root workspace config
 ```
 
-## Configuration
-
-## API Endpoints
-
-All endpoints require JWT authentication (except `/api/auth/login` and `/api/auth/register`).
-
-### Authentication
-
-**POST** `/api/auth/login`
-```json
-{
-  "email": "admin@university.edu",
-  "password": "admin123"
-}
-```
-Returns: `{ token: "...", user: { id, email, name, role } }`
-
-**POST** `/api/auth/register`
-```json
-{
-  "email": "newuser@example.com",
-  "password": "secure123",
-  "name": "New User"
-}
-```
-Returns: `{ token: "...", user: {...} }`
-
-### Requests
-
-**POST** `/api/requests` - Create new request
-```json
-{
-  "title": "WiFi not working",
-  "category": "IT",
-  "description": "No internet connection in Lab A",
-  "priority": "High",
-  "requesterName": "John Doe",
-  "requesterEmail": "john@example.com"
-}
-```
-
-**GET** `/api/requests` - List all requests
-- Query params: `?category=IT&status=Open&priority=High` (optional filters)
-
-**GET** `/api/requests/:id` - Get request details
-
-**PUT** `/api/requests/:id/status` - Update request status (Admin only)
-```json
-{
-  "status": "In Progress"
-}
-```
-Valid values: `"Open"`, `"In Progress"`, `"Resolved"`
-
-**POST** `/api/requests/:id/comments` - Add comment
-```json
-{
-  "comment": "Started investigation"
-}
-```
-
-### Analytics
-
-**GET** `/api/analytics/stats` - Get dashboard statistics
-
-Returns:
-```json
-{
-  "totalRequests": 10,
-  "openRequests": 5,
-  "inProgressRequests": 3,
-  "resolvedRequests": 2,
-  "byCategory": { "IT": 4, "Admin": 3, "Facilities": 3 },
-  "byPriority": { "High": 2, "Medium": 5, "Low": 3 },
-  "averageResolutionTime": 2.5,
-  "slaBreach": 1
-}
-```
-
-### Health Check
-
-**GET** `/api/health` - Server status check
-
-## Usage
 
 ### Creating a Request
 
@@ -312,35 +228,6 @@ Returns:
 6. Response sent back to frontend
 7. UI updates in real-time
 
-
-
-# Deploy
-git push heroku main
-```
-
-## Troubleshooting
-
-### Backend won't start
-
-**Error:** `Error: listen EADDRINUSE :::5000`
-- **Solution:** Port 5000 is in use. Either:
-  - Kill the process: `lsof -i :5000` (Mac/Linux) or `netstat -ano | findstr :5000` (Windows)
-  - Or change PORT in `.env` to an available port (e.g., 5001)
-
-**Error:** `Module not found`
-- **Solution:** Run `npm install` in the backend directory
-
-### Frontend won't start
-
-**Error:** `Port 3000 already in use`
-- **Solution:** Kill the process using port 3000 or change port:
-  ```bash
-  PORT=3001 npm start
-  ```
-
-**Error:** `Module not found: Can't resolve 'axios'`
-- **Solution:** Run `npm install` in the frontend directory
-
 ### Can't login
 
 - Verify backend is running on port 5000
@@ -384,9 +271,6 @@ Input validation on all endpoints
 Error handling (no sensitive data in error messages)  
 Role-based access control (Admin vs User)  
 Environment variable protection (secrets not in code)  
-
-
-## Development Tips
 
 
 ## Support
