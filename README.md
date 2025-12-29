@@ -142,25 +142,6 @@ Smart Service Request Portal/
 
 ## Configuration
 
-### Backend Environment (`.env` file)
-
-Create `backend/.env` (do not commit to version control):
-
-```env
-PORT=5000
-JWT_SECRET=your-secret-key-change-in-production
-```
-
-**Important:** Change `JWT_SECRET` in production to a secure random string.
-
-### Frontend Environment (optional)
-
-Create `frontend/.env` if backend runs on a different URL:
-
-```env
-REACT_APP_API_URL=http://localhost:5000
-```
-
 ## API Endpoints
 
 All endpoints require JWT authentication (except `/api/auth/login` and `/api/auth/register`).
@@ -331,58 +312,7 @@ Returns:
 6. Response sent back to frontend
 7. UI updates in real-time
 
-## Deployment
 
-### Local Development
-
-Already covered in Quick Start section above.
-
-### Docker Deployment
-
-**Backend Dockerfile:**
-```dockerfile
-FROM node:16
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 5000
-CMD ["npm", "start"]
-```
-
-**Build and run:**
-```bash
-docker build -t smart-service-backend .
-docker run -p 5000:5000 smart-service-backend
-```
-
-### Production Deployment
-
-**Recommended platforms:** Heroku, AWS, Azure, DigitalOcean, Railway, Render
-
-**Before deploying:**
-
-1. Change JWT_SECRET to a secure random value
-2. Update REACT_APP_API_URL to production API URL
-3. Switch database to MongoDB or PostgreSQL (optional):
-   - Install appropriate driver: `npm install mongoose` or `npm install pg`
-   - Update database connection code in server.js
-4. Enable HTTPS on your domain
-5. Add environment variables via platform dashboard
-6. Deploy backend, then frontend
-
-**Example: Deploying to Heroku**
-
-```bash
-# Login to Heroku
-heroku login
-
-# Create app
-heroku create your-app-name
-
-# Set environment variables
-heroku config:set JWT_SECRET="your-secure-secret"
-heroku config:set PORT=5000
 
 # Deploy
 git push heroku main
@@ -446,68 +376,18 @@ git push heroku main
 
 ### Implemented Security Features
 
-✅ JWT authentication with 24-hour expiration  
-✅ Password hashing with bcryptjs (10 salt rounds)  
-✅ Protected API routes (authentication middleware)  
-✅ CORS configuration (configurable by origin)  
-✅ Input validation on all endpoints  
-✅ Error handling (no sensitive data in error messages)  
-✅ Role-based access control (Admin vs User)  
-✅ Environment variable protection (secrets not in code)  
+JWT authentication with 24-hour expiration  
+Password hashing with bcryptjs (10 salt rounds)  
+Protected API routes (authentication middleware)  
+CORS configuration (configurable by origin)  
+Input validation on all endpoints  
+Error handling (no sensitive data in error messages)  
+Role-based access control (Admin vs User)  
+Environment variable protection (secrets not in code)  
 
 
 ## Development Tips
 
-### Adding a New Feature
-
-**Backend:**
-```javascript
-// Add route in server.js
-app.post('/api/new-feature', authenticateToken, (req, res) => {
-  // Implement logic
-  res.json({ success: true });
-});
-```
-
-**Frontend:**
-```javascript
-// Call in React component
-const response = await API.post('/new-feature', data);
-```
-
-### Common Code Patterns
-
-**Making API calls:**
-```javascript
-import axios from 'axios';
-
-const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000'
-});
-
-// Add token to requests
-API.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-```
-
-**Protected route example:**
-```javascript
-const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
-  if (!token) return res.status(401).json({ error: 'No token' });
-  
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Invalid token' });
-    req.user = user;
-    next();
-  });
-};
-```
 
 ## Support
 
@@ -569,20 +449,7 @@ Smart Service Request Portal is a production-ready, full-stack application for m
 
 The project uses SQLite by default for local persistence. Data is stored in `data.sqlite` in the project root (created by the backend on first run). To use another database in production, replace the storage layer and install the appropriate client (e.g., `mongoose` for MongoDB or `pg` for PostgreSQL).
 
-## Environment (examples)
 
-Create `backend/.env` (do not commit secrets):
-
-```
-PORT=5000
-JWT_SECRET=your_jwt_secret_here
-```
-
-Create `frontend/.env` if needed:
-
-```
-REACT_APP_API_URL=http://localhost:5000
-```
 
 ## API Endpoints (quick reference)
 
